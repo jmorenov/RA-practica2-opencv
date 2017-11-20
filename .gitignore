@@ -98,8 +98,4 @@ ENV/
 # mypy
 .mypy_cache/
 
-.idea/
-
-.a
-
-
+.idea
