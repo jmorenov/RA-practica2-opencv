@@ -35,7 +35,8 @@ def get_hists_of_images_node(node):
     for i in range(1, 5):
         imagePath = directory + '/imagen' + str(i) + '.jpg'
         image = cv2.imread(imagePath, 0)
-        hist = get_hist(image)
+        hist = image
+        #hist = get_hist(image)
         hists.append(hist)
 
     return hists
@@ -47,11 +48,11 @@ trainData = []
 
 for i in range(1, 8):
     hists = get_hists_of_images_node(i)
-    responses.append([i, i, i, i, i])
+    responses = np.concatenate((responses, [i, i, i, i, i]))
     trainData.append(hists)
 
-responses = np.array(responses)
-trainData = np.array(trainData)
+responses = np.float32(responses)
+trainData = np.float32(trainData)
 
 print 'Train KNN...'
 knn = cv2.ml.KNearest_create()
