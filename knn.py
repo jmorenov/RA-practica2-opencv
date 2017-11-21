@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 from sklearn.model_selection import LeaveOneOut
 
-FRAMES_PER_NODE = 3
+FRAMES_PER_NODE = 115
 NUMBER_OF_NODES = 7
 
 def get_hist(img):
