@@ -1,19 +1,13 @@
 import cv2
-import glob
 import os
-
-def load_videos_filename(directory, filePattern):
-    return glob.glob(directory + filePattern)
-
-def load_video(file):
-    return cv2.VideoCapture(file)
+import videos
 
 VideosDirectory = "Videos/"
 FilePattern = "Nodo_*.MOV"
-ListOfVideos = load_videos_filename(VideosDirectory, FilePattern)
+ListOfVideos = videos.load_videos_filename(VideosDirectory, FilePattern)
 
 for i in range(len(ListOfVideos)):
-    cap = load_video(ListOfVideos[i])
+    cap = videos.load_video(ListOfVideos[i])
     nframes = 0
 
     while(cap.isOpened() and nframes <= 114):
