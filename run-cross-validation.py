@@ -15,7 +15,7 @@ print 'Train KNN...'
 knn_model = knn.train(data, responses)
 
 print 'Cross validation...'
-crossvalidation.loo(knn_model, data, responses, 3)
+crossvalidation.loo(knn_model, data, responses, 19)
 
 stop = timeit.default_timer()
 
