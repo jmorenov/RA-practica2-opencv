@@ -48,12 +48,12 @@ while(cap.isOpened()):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     hist = images.get_hist(gray)
     sample = np.array([hist])
-    retu, results, neighbours, dist = knn.predict(knn_model, sample, 9, max_distance=3.5)
+    retu, results, neighbours, dist = knn.predict(knn_model, sample, 1, max_distance=3.5)
     node_detected, times_detected = compute_node_detected(node_detected, results[0][0], times_detected)
     frame_rotated = images.rotate_image(frame, -90)
 
     if node_detected != -1:
-        print 'Nodo predecido: ' + str(int(node_detected))
+        #print 'Nodo predecido: ' + str(int(node_detected))
 
         if node_detected == next_node or (node_detected > actual_node and times_detected >= 7):
             actual_node = node_detected
@@ -61,10 +61,10 @@ while(cap.isOpened()):
 
     actual_node_name, next_node_name = get_named_nodes(actual_node, next_node)
 
-    cv2.putText(frame_rotated, actual_node_name, (10, 500), cv2.FONT_HERSHEY_SIMPLEX, 3, (200, 255, 155), 13, cv2.LINE_AA)
-    cv2.putText(frame_rotated, next_node_name, (10, 1000), cv2.FONT_HERSHEY_SIMPLEX, 3, (200, 255, 155), 13, cv2.LINE_AA)
-    cv2.namedWindow('Test Dynamic', cv2.WINDOW_NORMAL)
-    cv2.resizeWindow('Test Dynamic', 600, 600)
+    cv2.putText(frame_rotated, actual_node_name, (10, 200), cv2.FONT_HERSHEY_SIMPLEX, 3, (200, 255, 155), 13, cv2.LINE_AA)
+    cv2.putText(frame_rotated, next_node_name, (10, 500), cv2.FONT_HERSHEY_SIMPLEX, 3, (200, 255, 155), 13, cv2.LINE_AA)
+    cv2.namedWindow('Test Dynamic', cv2.WINDOW_FULLSCREEN)
+    #cv2.resizeWindow('Test Dynamic', 300, 300)
     cv2.imshow('Test Dynamic', frame_rotated)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
